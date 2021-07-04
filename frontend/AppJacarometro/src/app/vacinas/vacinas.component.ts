@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
-import { Vacina } from '../models/vacina';
+import { Vacina } from '../models/Vacina';
 
 @Component({
   selector: 'app-vacinas',

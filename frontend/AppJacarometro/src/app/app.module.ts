@@ -6,22 +6,22 @@ import { AppComponent } from './app.component';
 import { VacinasComponent } from './vacinas/vacinas.component';
 import { FuncionariosComponent } from './funcionarios/funcionarios.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { FuncionariosVacinasComponent } from './funcionariosVacinas/funcionariosVacinas.component';
 import { NavComponent } from './nav/nav.component';
 import { TituloComponent } from './titulo/titulo.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { VacinasFuncionariosComponent } from './vacinasFuncionarios/vacinasFuncionarios.component';
 
 @NgModule({
-  declarations: [						
+  declarations: [							
     AppComponent,
     VacinasComponent,
       FuncionariosComponent,
       DashboardComponent,
-      FuncionariosVacinasComponent,
       NavComponent,
       TituloComponent,
-      PerfilComponent
+      PerfilComponent,
+      VacinasFuncionariosComponent
    ],
   imports: [
     BrowserModule,
