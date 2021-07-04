@@ -1,0 +1,68 @@
+<div class="row">
+
+  <div class="col-sm-6" *ngIf="vacinaSelecionada">
+      <div class="mr-auto">
+        <app-titulo [titulo] = "'Vacina: ' + vacinaSelecionada.nome"></app-titulo>
+      </div>
+      <div class="mt-1">
+        <button class="btn btn-warning" (click)="voltar()">Voltar</button>
+      </div>
+
+    <form [formGroup]="vacinaForm" (submit)="vacinaSubmit()">
+        <div class="form-group">
+          <label for="formGroupExampleInput">Nome</label>
+          <input type="text" formControlName="nome" class="form-control">
+        </div>
+        <div class="form-group" >
+          <label for="formGroupExampleInput2">Período Dose</label>
+          <input type="text" formControlName="periodoDose" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Tipo Intervalo</label>
+          <input type="text" formControlName="tipoIntervalo" class="form-control">
+        </div>
+        <div class="form-group">
+          <hr>
+          <button class="btn btn-sm btn-success" [disabled]="!vacinaForm.valid">Enviar</button>
+        </div>
+      </form>
+
+  </div>
+
+
+    <div [ngClass]="{'col-sm-6': vacinaSelecionada, 'col-sm-12': !vacinaSelecionada}">
+      <!-- Nenhuma vacina selecionada -->
+      <app-titulo [titulo] = "titulo"></app-titulo>
+
+      <table class="table table-hover">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Período Dose</th>
+            <th scope="col">Tipo Intervalo</th>
+            <th scope="col">Opções</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let vacina of vacinas" (click)="vacinaSelected(vacina)">
+            <th scope="row">{{vacina.id}}</th>
+            <td>{{vacina.nome}}</td>
+            <td>{{vacina.periodoDose}}</td>
+            <td>{{vacina.tipoIntervalo}}</td>
+            <td>
+              <div class="btn-group">
+                <!-- <button (click)="openModal(template)" class="btn btn-sm btn-primary">Professores</button> -->
+                <button (click)="vacinaSelected(vacina)" class="btn btn-sm btn-warning">Detalhe</button>
+                <button class="btn btn-sm btn-danger" (click)="deletarVacina(vacina.id)">Desativar</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+
+
