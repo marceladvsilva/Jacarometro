@@ -11,21 +11,21 @@ namespace Jacarometro_WebAPI.Migrations
                 name: "Funcionarios",
                 columns: table => new
                 {
-                    FuncionarioId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Login = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Funcionarios", x => x.FuncionarioId);
+                    table.PrimaryKey("PK_Funcionarios", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Vacinas",
                 columns: table => new
                 {
-                    VacinaId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PeriodoDose = table.Column<int>(type: "int", nullable: false),
@@ -33,22 +33,23 @@ namespace Jacarometro_WebAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Vacinas", x => x.VacinaId);
+                    table.PrimaryKey("PK_Vacinas", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "VacinasFuncionarios",
                 columns: table => new
                 {
-                    VacinaFuncionarioId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     VacinaId = table.Column<int>(type: "int", nullable: false),
                     FuncionarioId = table.Column<int>(type: "int", nullable: false),
-                    DataPrimeiraDose = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DataPrimeiraDose = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DataSegundaDose = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_VacinasFuncionarios", x => x.VacinaFuncionarioId);
+                    table.PrimaryKey("PK_VacinasFuncionarios", x => x.Id);
                 });
         }
 

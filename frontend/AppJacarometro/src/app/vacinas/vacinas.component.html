@@ -1,17 +1,16 @@
 <div class="row">
-
-  <div class="col-sm-6" *ngIf="vacinaSelecionada">
-      <div class="mr-auto">
-        <app-titulo [titulo] = "'Vacina: ' + vacinaSelecionada.nome"></app-titulo>
-      </div>
-      <div class="mt-1">
-        <button class="btn btn-warning" (click)="voltar()">Voltar</button>
-      </div>
-
-    <form [formGroup]="vacinaForm" (submit)="vacinaSubmit()">
+  
+    <div class="col-sm-6" *ngIf="vacinaSelecionada">
+      <app-titulo [titulo]="(vacinaSelecionada?.id == 0 ? 'Novo vacina' : 'Vacina: ' + vacinaSelecionada?.nome)">
+        <button class="btn btn-sm btn-danger" (click)="voltar()">Fechar</button>
+      </app-titulo>
+        
+  
+      <form [formGroup]="vacinaForm" (submit)="vacinaSubmit()">
         <div class="form-group">
           <label for="formGroupExampleInput">Nome</label>
           <input type="text" formControlName="nome" class="form-control">
+          <!-- <input type="text" value="{{vacinaSelecionada.nome}}" class="form-control"> -->
         </div>
         <div class="form-group" >
           <label for="formGroupExampleInput2">Período Dose</label>
@@ -23,20 +22,20 @@
         </div>
         <div class="form-group">
           <hr>
-          <button class="btn btn-sm btn-success" [disabled]="!vacinaForm.valid">Enviar</button>
+            <button class="btn btn-sm btn-success" [disabled]="!vacinaForm.valid">Enviar</button>
         </div>
       </form>
-
-  </div>
-
-
-    <div [ngClass]="{'col-sm-6': vacinaSelecionada, 'col-sm-12': !vacinaSelecionada}">
-      <!-- Nenhuma vacina selecionada -->
-      <app-titulo [titulo] = "titulo"></app-titulo>
-
-      <table class="table table-hover">
+    </div>
+    
+    <div [ngClass]="{'col-sm-6': vacinaSelecionada, 'col-sm-12': !vacinaSelecionada}" >
+      <app-titulo [titulo]="titulo">
+        <button class="btn btn-outline-success">Cadastrar Vacina</button>
+        <!-- <button class="btn btn-outline-success" (click)="vacinaNova()">Cadastrar Vacina</button> -->
+      </app-titulo>
+      <table class="table table table-hover">
         <thead class="thead-light">
           <tr>
+            <th scope="col">Visualizar</th>
             <th scope="col">#</th>
             <th scope="col">Nome</th>
             <th scope="col">Período Dose</th>
@@ -45,24 +44,33 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let vacina of vacinas" (click)="vacinaSelected(vacina)">
-            <th scope="row">{{vacina.id}}</th>
+          <tr *ngFor="let vacina of vacinas" >
+            <td><button (click)="vacinaSelected(vacina)" class="btn btn-sm btn-warning">Detalhe</button></td>
+            <td scope="row">{{vacina.id}}</td>
             <td>{{vacina.nome}}</td>
             <td>{{vacina.periodoDose}}</td>
             <td>{{vacina.tipoIntervalo}}</td>
             <td>
               <div class="btn-group">
                 <!-- <button (click)="openModal(template)" class="btn btn-sm btn-primary">Professores</button> -->
-                <button (click)="vacinaSelected(vacina)" class="btn btn-sm btn-warning">Detalhe</button>
                 <button class="btn btn-sm btn-danger" (click)="deletarVacina(vacina.id)">Desativar</button>
               </div>
             </td>
           </tr>
+  
         </tbody>
       </table>
     </div>
-
   </div>
-
-
-
+  
+  <!-- <ng-template #template>
+    
+    <div class="modal-body">
+      <app-professores></app-professores>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn pull-right" aria-label="Close" (click)="modalRef.hide()">
+        FECHAR
+      </button>
+    </div>
+  </ng-template> -->

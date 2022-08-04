@@ -6,25 +6,25 @@
   </button>
 
   <div class="container">
-    
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a routerLink="vacinas" routerLinkActive="" class="nav-link">Vacinas</a>
+          <a class="nav-link" routerLinkActive="active" routerLink="funcionariosVacinas">Funcionários-Vacinas </a>
         </li>
         <li class="nav-item">
-          <a routerLink="funcionarios" routerLinkActive="" class="nav-link">Funcionarios</a>
-        </li>
+          <a routerLink="funcionarios" routerLinkActive="active" class="nav-link">Funcionários</a>
+        </li>   
         <li class="nav-item">
-          <a routerLink="funcionariosVacinas" routerLinkActive="" class="nav-link">Funcionarios - Vacinas</a>
-        </li>
+          <a routerLink="vacinas" routerLinkActive="active" class="nav-link">Vacinas</a>
+        </li>        
       </ul>
+
 
       <ul class="navbar-nav" dropdown>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="button-basic" dropdownToggle id="navbarDropdownMenuLink" role="button"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer">
-            Perfil
+            Marcela
           </a>
           <div id="dropdown-basic" *dropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a routerLink="perfil" class="dropdown-item" href="#">Perfil</a>
@@ -35,4 +35,5 @@
 
     </div>
   </div>
+
 </nav>

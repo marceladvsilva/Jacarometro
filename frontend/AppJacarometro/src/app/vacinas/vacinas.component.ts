@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { Vacina } from '../models/Vacina';
+import { VacinasService } from './vacinas.service';
 
 @Component({
   selector: 'app-vacinas',
@@ -13,18 +14,28 @@ export class VacinasComponent implements OnInit {
   public titulo="Vacinas";
   public vacinaSelecionada: Vacina | undefined;
   public vacinaForm!: FormGroup;
+  // public vacinas!: [];
+  public vacinas:any[] = [];
 
-  public vacinas = [
-    {id: 1, nome:"Coronavac", periodoDose:14, tipoIntervalo:"D"},
-    {id: 2, nome:"Astrazeneca", periodoDose:3, tipoIntervalo:"M"},
-    {id: 3, nome:"Pfizer", periodoDose:3, tipoIntervalo:"M"}
-  ];
-
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder,
+              private vacinasService: VacinasService) { 
     this.criarForm();
   }
 
   ngOnInit(): void {
+    this.carregarVacinas();
+  }
+
+  carregarVacinas(this: any) {
+    this.vacinasService.getAll().subscribe(
+      (vacinas: Vacina[]) => {
+        this.vacinas = vacinas;
+        // this.alunos = vacinas;
+      },
+      (erro: any) => {
+        console.error(erro)
+      }
+    );
   }
 
   criarForm(){
@@ -63,8 +74,11 @@ export class VacinasComponent implements OnInit {
     this.vacinaSelecionada = undefined;
   }
 
+  
+
 
 
  
 
 }
+

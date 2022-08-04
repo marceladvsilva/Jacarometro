@@ -21,7 +21,7 @@ namespace Jacarometro_WebAPI.Migrations
 
             modelBuilder.Entity("Jacarometro_WebAPI.Models.Funcionario", b =>
                 {
-                    b.Property<int>("FuncionarioId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -32,14 +32,14 @@ namespace Jacarometro_WebAPI.Migrations
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("FuncionarioId");
+                    b.HasKey("Id");
 
                     b.ToTable("Funcionarios");
                 });
 
             modelBuilder.Entity("Jacarometro_WebAPI.Models.Vacina", b =>
                 {
-                    b.Property<int>("VacinaId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -53,19 +53,22 @@ namespace Jacarometro_WebAPI.Migrations
                     b.Property<string>("TipoIntervalo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("VacinaId");
+                    b.HasKey("Id");
 
                     b.ToTable("Vacinas");
                 });
 
             modelBuilder.Entity("Jacarometro_WebAPI.Models.VacinaFuncionario", b =>
                 {
-                    b.Property<int>("VacinaFuncionarioId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("DataPrimeiraDose")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataSegundaDose")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("FuncionarioId")
@@ -74,7 +77,7 @@ namespace Jacarometro_WebAPI.Migrations
                     b.Property<int>("VacinaId")
                         .HasColumnType("int");
 
-                    b.HasKey("VacinaFuncionarioId");
+                    b.HasKey("Id");
 
                     b.ToTable("VacinasFuncionarios");
                 });

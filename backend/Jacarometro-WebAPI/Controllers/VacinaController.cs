@@ -48,7 +48,7 @@ namespace Jacarometro_WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Vacina>> SaveVacinadAsync(Vacina vacina){
+        public async Task<ActionResult<Vacina>> SaveVacinaAsync(Vacina vacina){
 
             await _contexto.Vacinas.AddAsync(vacina);
             await _contexto.SaveChangesAsync();
@@ -57,7 +57,7 @@ namespace Jacarometro_WebAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> UpdateVacinaaAsync(Vacina vacina){
+        public async Task<ActionResult> UpdateVacinaAsync(Vacina vacina){
             _contexto.Vacinas.Update(vacina);
             await _contexto.SaveChangesAsync();
             
@@ -65,7 +65,7 @@ namespace Jacarometro_WebAPI.Controllers
         }
 
         [HttpDelete("{vacinaId}")]
-        public async Task<ActionResult> ExcluirPessoaAsync(int vacinaId){
+        public async Task<ActionResult> DeleteVacinaAsync(int vacinaId){
             Vacina vacina = await _contexto.Vacinas.FindAsync(vacinaId);
             if(vacina == null)
                 return NotFound();
